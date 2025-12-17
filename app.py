@@ -3,6 +3,7 @@ from agno.models.openai import OpenAIChat
 from agno.tools.arxiv import ArxivTools
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.googlesearch import GoogleSearchTools
+from agno.tools.hackernews import HackerNewsTools
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -43,5 +44,14 @@ websearch_agent = Agent(
     add_datetime_to_context=True,
 )
 
-
+# define the hacker news research agent
+hackernews_research_agent = Agent(
+    id="hackernews_research_agent",
+    name="Hacker News Research Agent",
+    model=model,
+    role="Hacker News Research Assistant",
+    instructions="You are an expert research assistant specialized in finding and summarizing information from Hacker News. Get relevant information about the articles for the topic the user requested for,summarize your finding in proper format",
+    tools=[HackerNewsTools()],
+    add_datetime_to_context=True,
+)
 
