@@ -4,6 +4,9 @@ from agno.tools.arxiv import ArxivTools
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.googlesearch import GoogleSearchTools
 from agno.tools.hackernews import HackerNewsTools
+from agno.tools.newspaper4k import Newspaper4kTools
+from agno.tools.wikipedia import WikipediaTools
+from agno.tools.x import XTools
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -52,6 +55,42 @@ hackernews_research_agent = Agent(
     role="Hacker News Research Assistant",
     instructions="You are an expert research assistant specialized in finding and summarizing information from Hacker News. Get relevant information about the articles for the topic the user requested for,summarize your finding in proper format",
     tools=[HackerNewsTools()],
+    add_datetime_to_context=True,
+)
+
+# define the news article research agent
+
+news_article_research_agent = Agent(
+    id="news_article_research_agent",
+    name="News Article Research Agent",
+    model=model,
+    role="News Article Research Assistant",
+    role="News Article Research Assistant",
+    instructions="You are a research assistant that can read the contents of articles, whenever url is provided you can read the content of the article and also get its data using the available tools search for articles and summarize them and gather relevant information.",
+    tools=[Newspaper4kTools(include_summary=True)],
+    add_datetime_to_context=True,
+)
+
+# define the wikipedia tool
+wikipedia_research_agent = Agent(
+    id="wikipedia_research_agent",
+    name="Wikipedia Research Agent",
+    model=model,
+    role="Wikipedia Research Assistant",
+    instructions="You are an expert research assistant specialized in finding and summarizing information from Wikipedia. Use the Wikipedia tool to gather relevant information about the topic the user requested for, sum marize your findings in a proper format.",
+    tools=[WikipediaTools()],
+    add_datetime_to_context=True,
+)
+
+# define x research agent
+
+x_research_agent = Agent(
+    id="x_research_agent",
+    name="X Research Agent",
+    model=model,
+    role="X Research Assistant",
+    instructions="You are a research assistant that gather information from X formarly known as Twitter. You can search for relevant tweets and summarize the key points for the user.Do include the metric information to the posts you are referring to.Summarize your research in clear and concise manner.",
+    tools=[XTools(include_post_metrics=True)],
     add_datetime_to_context=True,
 )
 
