@@ -3,6 +3,7 @@ from agno.models.openai import OpenAIChat
 from agno.tools.arxiv import ArxivTools
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.googlesearch import GoogleSearchTools
+from agno.tools.youtube import YouTubeTools
 from agno.tools.hackernews import HackerNewsTools
 from agno.tools.newspaper4k import Newspaper4kTools
 from agno.tools.wikipedia import WikipediaTools
@@ -84,13 +85,27 @@ wikipedia_research_agent = Agent(
 
 # define x research agent
 
-x_research_agent = Agent(
-    id="x_research_agent",
-    name="X Research Agent",
+#x_research_agent = Agent(
+    #id="x_research_agent",
+    #name="X Research Agent",
+    #model=model,
+    #role="X Research Assistant",
+    #instructions="You are a research assistant that gather information from X formarly known as Twitter. You can search for relevant tweets and summarize the key points for the user.Do include the metric information to the posts you are referring to.Summarize your research in clear and concise manner.",
+    #tools=[XTools(include_post_metrics=True,wait_on_rate_limit=True)],
+    #add_datetime_to_context=True,
+#)
+
+# define youtube research agent
+
+youtube_research_agent = Agent(
+    id="youtube_research_agent",
+    name="YouTube Research Agent",
     model=model,
-    role="X Research Assistant",
-    instructions="You are a research assistant that gather information from X formarly known as Twitter. You can search for relevant tweets and summarize the key points for the user.Do include the metric information to the posts you are referring to.Summarize your research in clear and concise manner.",
-    tools=[XTools(include_post_metrics=True)],
+    role="YouTube Research Assistant",
+    instructions="You are a research assistant that can find relevant YouTube videos based on user queries. Use the available tools to search for videos, gather information from the video transcripts,You can also read metadata of the video and summarize the key points for the user.",
+    tools=[YouTubeTools()],
     add_datetime_to_context=True,
 )
+
+
 

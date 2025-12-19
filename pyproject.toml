@@ -17,4 +17,5 @@ dependencies = [
     "python-dotenv>=1.2.1",
     "tweepy>=4.16.0",
     "wikipedia>=1.4.0",
+    "youtube-transcript-api>=1.2.3",
 ]
