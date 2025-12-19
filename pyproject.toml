@@ -12,6 +12,7 @@ dependencies = [
     "lxml-html-clean>=0.4.3",
     "newspaper4k>=0.9.4.1",
     "openai>=2.13.0",
+    "praw>=7.8.1",
     "pycountry>=24.6.1",
     "pypdf>=6.4.2",
     "python-dotenv>=1.2.1",
